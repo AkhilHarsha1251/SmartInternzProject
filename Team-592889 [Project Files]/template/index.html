@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Price Prediction</title>
+    <style>
+        body {
+            background-image: url('/static/background.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #3498db; /* Dark text color */
+        }
+
+        h1, p {
+            text-align: left;
+            color: #3498db; /* Blue heading and text color */
+        }
+
+        form {
+            text-align: left;
+            margin: 20px;
+        }
+
+        button {
+            background-color: #2ecc71; /* Green button color */
+            color: #ffffff; /* White button text color */
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #27ae60; /* Darker green on hover */
+        }
+
+        /* Style the error message */
+        p.error {
+            color: #e74c3c; /* Red error message color */
+        }
+    </style>
+</head>
+<body>
+    <h1>Bitcoin Price Prediction</h1>
+
+    <form method="post" action="/">
+        {{ form.csrf_token }}
+        {{ form.selected_date.label }} {{ form.selected_date }}
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if predicted_price %}
+     <p>Predicted Price for the Selected Date:  <span style="color:red;">{{ predicted_price }}</span>  US Dollars</p>
+   
+        
+    {% endif %}
+
+    {% if error %}
+        <p class="error">Error: {{ error }}</p>
+    {% endif %}
+</body>
+</html>
